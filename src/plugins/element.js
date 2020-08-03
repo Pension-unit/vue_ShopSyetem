@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import {
+  Select,
+  Option,
   Button,
   Form,
   FormItem,
@@ -47,4 +49,6 @@ Vue.use(Switch)
 Vue.use(Tooltip)
 Vue.use(Pagination)
 Vue.use(Dialog)
+Vue.use(Select)
+Vue.use(Option)
 Vue.prototype.$message = Message
