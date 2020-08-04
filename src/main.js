@@ -9,7 +9,8 @@ import './assets/css/global.css'
 
 import axios from 'axios'
 // 配置请求的跟路径
-axios.defaults.baseURL = 'https://www.liulongbin.top:8888/api/private/v1/'
+axios.defaults.baseURL = "http://193.112.208.128:8888/api/private/v1/" // 这里要用双引号
+
 axios.interceptors.request.use(config => {
   // console.log(config)
   config.headers.Authorization = window.sessionStorage.getItem('token')
