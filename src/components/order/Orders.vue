@@ -102,14 +102,14 @@
 
                 <!-- 物流状态对话框 -->
                 <el-dialog title="物流进度" :visible.sync="progressVisible" width="50%">
-                  <!-- <el-timeline :reverse="reverse">
+                  <el-timeline >
                     <el-timeline-item
-                      v-for="(activity, index) in orderstatusinfo"
+                      v-for="(item, index) in orderstatusinfo"
                       :key="index"
-                      :timestamp="activity.timestamp">
-                      {{activity.content}}
+                      :timestamp="item.timestamp">
+                      {{item.context}}
                     </el-timeline-item>
-                  </el-timeline> -->
+                  </el-timeline>
                 </el-dialog>
                 
             </div>
@@ -143,7 +143,7 @@ return {
       address:'',
     },
     progressVisible: false,
-    reverse: true,
+    // reverse: true,
     orderstatusinfo:[],
   };
 },
@@ -172,11 +172,11 @@ methods: {
       let res = await this.$http.get('orders',{
         params: this.queryInfo
       })
-      console.log(res.data);
+      // console.log(res.data);
       this.goodslist = res.data.data.goods;
       this.total = res.data.data.total;
       // console.log(this.total);
-      console.log(this.goodslist);
+      // console.log(this.goodslist);
     },
 
     //页码显示条数函数处理
@@ -191,16 +191,17 @@ methods: {
 
     //获取物流状态
     async getOrderStatus(){
-      let res = await this.$http.get('kuaidi/804909574412544580');
-      console.log(res);
-      this.orderstatusinfo = res.data;
-      console.log(orderstatusinfo);
+      let res = await this.$http.get('/kuaidi/804909574412544580');
+      // console.log(res.data);
+      this.orderstatusinfo = res.data.data;
+      console.log(this.orderstatusinfo);
 
     }
 },
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
   this.getOrderList();
+  this.getOrderStatus();
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
  mounted() {
@@ -217,6 +218,10 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 }
 </script>
 <style  lang='less' scoped>
+
+@import '../../plugins/timeline/timeline.css';
+@import '../../plugins/timeline-item/timeline-item.css';
+
 .mainBox{
   background-color: #eaedf1;
   .title{
