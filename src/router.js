@@ -4,10 +4,7 @@ import Login from './components/Login.vue'
 import Home from './components/Home.vue'
 import Welcome from './components/Welcome.vue'
 import Users from './components/user/Users.vue'
-<<<<<<< HEAD
 import Orders from './components/order/Orders.vue'
-=======
->>>>>>> 35c3fa94a250611be05ae5cead04f7b708ccec81
 import List from './components/goods/List.vue'
 import Add from './components/goods/Add.vue'
 import Roles from './components/power/Roles.vue'
@@ -26,10 +23,7 @@ const router = new Router({
       children: [
         { path: '/welcome', component: Welcome },
         { path: '/users', component: Users },
-<<<<<<< HEAD
         { path: '/orders', component: Orders },
-=======
->>>>>>> 35c3fa94a250611be05ae5cead04f7b708ccec81
         { path: '/goods', component: List },
         { path: '/goods/add', component: Add },
         { path: '/roles', component: Roles },
