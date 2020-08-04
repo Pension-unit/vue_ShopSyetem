@@ -32,7 +32,8 @@ import {
   TabPane,
   Steps,
   Step,
-  Tag
+  Tag,
+  
 } from 'element-ui'
 
 Vue.use(Button)
@@ -66,5 +67,6 @@ Vue.use(TabPane)
 Vue.use(Steps)
 Vue.use(Step)
 Vue.use(Tag)
+
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm

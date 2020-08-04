@@ -1,6 +1,5 @@
 <!--  -->
 <template>
-    <el-container>
         <!-- 右边主要内容 -->
         <el-main class='mainBox'>
             <!-- 1 顶部 面包屑导航 -->
@@ -60,8 +59,8 @@
 
                     <el-table-column label="操作">
                         <template slot-scope="scope">
-                          <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
-                          <el-button type="info" icon="el-icon-location-outline" size="mini" style='background:#67c23a'></el-button>
+                          <el-button @click='changeAddress' type="primary" icon="el-icon-edit" size="mini"></el-button>
+                          <el-button @click='checkOrderStatus' type="info" icon="el-icon-location-outline" size="mini" style='background:#67c23a'></el-button>
                         </template> 
                     </el-table-column>
                 </el-table>
@@ -81,15 +80,46 @@
                     page-sizes 接受一个整型数组，数组元素为展示的选择每页显示个数的选项;
                     size-change和current-change事件来处理页码大小和当前页变动时候触发的事件  -->
                 </div>
+
+                <!-- 修改地址对话框 -->
+                <el-dialog title="修改地址" :visible.sync="dialogFormVisible">
+                  <el-form label-width="100px" >
+                    <el-form-item label="省市区/县" required>
+                      <el-cascader v-model="value" :options="citydatas"></el-cascader>
+                    </el-form-item>
+                    <el-form-item label="详细地址" 
+                    v-model='addressForm'
+                    prop="address"
+                    :rules="{required: true, message: '请填写详细地址', trigger: 'blur'}">
+                      <el-input v-model='addressForm.address'></el-input>
+                    </el-form-item>
+                  </el-form>
+                  <div slot="footer" class="dialog-footer">
+                    <el-button @click="dialogFormVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+                  </div>
+                </el-dialog>
+
+                <!-- 物流状态对话框 -->
+                <el-dialog title="物流进度" :visible.sync="progressVisible" width="50%">
+                  <!-- <el-timeline :reverse="reverse">
+                    <el-timeline-item
+                      v-for="(activity, index) in orderstatusinfo"
+                      :key="index"
+                      :timestamp="activity.timestamp">
+                      {{activity.content}}
+                    </el-timeline-item>
+                  </el-timeline> -->
+                </el-dialog>
                 
             </div>
         </el-main>
-    </el-container>
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
+import citydatas from './citydata';
 
 export default {
 //import引入的组件需要注入到对象中才能使用
@@ -106,6 +136,15 @@ return {
     },
     goodslist:[],
     total:0,
+    dialogFormVisible: false,
+    value: [],
+    citydatas,
+    addressForm:{
+      address:'',
+    },
+    progressVisible: false,
+    reverse: true,
+    orderstatusinfo:[],
   };
 },
 //监听属性 类似于data概念
@@ -114,9 +153,20 @@ computed: {},
 watch: {},
 //方法集合
 methods: {
+    //显示修改地址弹出框
+    changeAddress:function(){
+      this.dialogFormVisible = true;
+    },
+    
+    //显示物流状态框
+    checkOrderStatus: function(){
+      this.progressVisible = true;
+    },
+
     indexMethod(index) {
         return index * 1 + 1;
       },
+
     //获取所有订单列表
     async getOrderList(){
       let res = await this.$http.get('orders',{
@@ -128,6 +178,7 @@ methods: {
       // console.log(this.total);
       console.log(this.goodslist);
     },
+
     //页码显示条数函数处理
     handleSizeChange:function(newSize){
       this.queryInfo.pagesize = newSize;
@@ -137,18 +188,15 @@ methods: {
       this.queryInfo.pagenum = newPage;
       this.getOrderList();
     },
-    // //把数值格式的时间转为具体日期
-    // handleTime:function(num){
-    //   let time = num;
-    //   let year = time.getFullYear()
-    //   let month = time.getMonth()
-    //   let date = time.getDate()
-    //   let h = time.getHours()
-    //   let mm = time.getMinutes()
-    //   let ss = time.getSeconds()
-    //   return year+'-'+month+'-'+date + h+':'+mm+':'+ss 
-    // }
 
+    //获取物流状态
+    async getOrderStatus(){
+      let res = await this.$http.get('kuaidi/804909574412544580');
+      console.log(res);
+      this.orderstatusinfo = res.data;
+      console.log(orderstatusinfo);
+
+    }
 },
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
@@ -183,6 +231,9 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
     };
     .orderlist{
         margin-bottom: 10px;
+    }
+    .el-cascader {
+      width: 100%;
     }
     
   }
