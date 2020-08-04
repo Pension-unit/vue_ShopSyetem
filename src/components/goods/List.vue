@@ -29,7 +29,9 @@
         <el-table-column prop="goods_price" label="商品价格(元)" width="95px"></el-table-column>
         <el-table-column prop="goods_weight" label="商品重量" width="70px"></el-table-column>
         <el-table-column prop="add_time" label="创建时间" width="140px">
-          <template slot-scope="scope">{{scope.row.add_time}}</template>
+          <template slot-scope="scope">
+            {{ scope.row.add_time | dateFormat}}
+            </template>
         </el-table-column>
         <el-table-column label="操作" width="130px">
           <template slot-scope="scope">
@@ -92,12 +94,13 @@ export default {
       const { data: res } = await this.$http.get('goods', {
         params: this.queryInfo
       })
-      console.log(res)
+      // console.log(res)
       if (res.meta.status !== 200) {
         return this.$message.error('获取商品列表失败!')
       }
       this.$message.success('获取商品列表成功!')
       this.productslist = res.data.goods
+      console.log(res)
       this.total = res.data.total
     },
     handleSizeChange(newSize) {
