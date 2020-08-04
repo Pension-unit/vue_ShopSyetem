@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import {
+  Select,
+  Option,
   Button,
   Form,
   FormItem,
@@ -60,6 +62,11 @@ Vue.use(Switch)
 Vue.use(Tooltip)
 Vue.use(Pagination)
 Vue.use(Dialog)
+<<<<<<< HEAD
+Vue.use(Select)
+Vue.use(Option)
+=======
+>>>>>>> 35c3fa94a250611be05ae5cead04f7b708ccec81
 Vue.use(Cascader)
 Vue.use(Alert)
 Vue.use(Tabs)

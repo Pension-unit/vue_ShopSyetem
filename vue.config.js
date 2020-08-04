@@ -1,3 +1,6 @@
 module.exports = {
-    lintOnSave:false,
-}
+
+    lintOnSave: false,
+    publicPath:"./",
+    productionSourceMap: false, //默认不生成sourcemap文件
+  }
