@@ -1,14 +1,6 @@
 module.exports = {
-    lintOnSave:false,
+
+    lintOnSave: false,
     publicPath:"./",
-    productionSourceMap:false, // 默认不生成 sourcemap 的文件 就是源代码文件
-    // devServer: {
-    //     proxy: 'http://tt.linweiqin.com/api/tt/'
-    // }
-    // devServer: {
-    //     proxy: 'http://v.juhe.cn/toutiao/index'
-    // }
-    // devServer: {
-    //     proxy: 'http://localhost:9000'
-    // }
-}
+    productionSourceMap: false, //默认不生成sourcemap文件
+  }

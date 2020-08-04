@@ -10,8 +10,10 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.4.5",
+    "lodash": "^4.17.19",
     "vue": "^2.5.22",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue2-editor": "^2.10.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",
