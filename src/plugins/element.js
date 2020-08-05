@@ -25,7 +25,6 @@ import {
   Tooltip,
   Pagination,
   Dialog,
-  Tag,
   Tree,
   MessageBox,
   Cascader,
