@@ -202,7 +202,6 @@ export default {
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {
-    sessionStorage.token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjUwMCwicmlkIjowLCJpYXQiOjE1OTY0NDgxMjAsImV4cCI6MTU5NjUzNDUyMH0.XOmxmXJbOozOqZL5MUoBrqgsDheej4M8PBkIHoQ2heM";
   }, //生命周期 - 创建之前
   beforeMount() {
   }, //生命周期 - 挂载之前

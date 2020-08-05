@@ -66,7 +66,6 @@ mounted() {
   
   },
 beforeCreate() {
-  sessionStorage.token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjUwMCwicmlkIjowLCJpYXQiOjE1OTY0NDgxMjAsImV4cCI6MTU5NjUzNDUyMH0.XOmxmXJbOozOqZL5MUoBrqgsDheej4M8PBkIHoQ2heM";
   }, //生命周期 - 创建之前
 beforeMount() {}, //生命周期 - 挂载之前
 beforeUpdate() {}, //生命周期 - 更新之前
