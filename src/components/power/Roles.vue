@@ -24,7 +24,7 @@
 
       <!-- 角色列表区域 -->
       <el-table :data="rolelist" border stripe>
-        <!-- 展开列 -->
+        <!-- 展开列 --> 
         <el-table-column type="expand">
           <template slot-scope="scope">
             <el-row
@@ -65,13 +65,10 @@
                 </el-row>
               </el-col>
             </el-row>
-            <!-- <pre>
-              {{scope.row}}
-            </pre>-->
           </template>
         </el-table-column>
         <!-- 索引列 -->
-        <el-table-column type="index" label="#"></el-table-column>
+        <el-table-column label="#" type="index"></el-table-column>
         <el-table-column label="角色名称" prop="roleName"></el-table-column>
         <el-table-column label="角色描述" prop="roleDesc"></el-table-column>
         <el-table-column label="操作" width="300px">
