@@ -1,8 +1,7 @@
 <!--  -->
 <template>
 <div id='app'>
-    Welcome!!!!!!!!!!!!!!!!!!!!!!!!
-    adsf
+    Welcome!!!!!!!!!!!!!!!
 </div>
 </template>
 
