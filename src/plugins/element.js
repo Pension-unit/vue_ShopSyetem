@@ -25,6 +25,8 @@ import {
   Tooltip,
   Pagination,
   Dialog,
+  Tag,
+  Tree,
   MessageBox,
   Cascader,
   Alert,
@@ -41,7 +43,6 @@ import TimelineItem from './timeline-item/index.js'
 // 注册全局可用
 Vue.use(Timeline);
 Vue.use(TimelineItem);
-
 Vue.use(Button)
 Vue.use(Form)
 Vue.use(FormItem)
@@ -73,6 +74,10 @@ Vue.use(TabPane)
 Vue.use(Steps)
 Vue.use(Step)
 Vue.use(Tag)
+Vue.use(Tree)
+Vue.use(Checkbox)
+Vue.use(CheckboxGroup)
+Vue.use(Upload)
 
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm

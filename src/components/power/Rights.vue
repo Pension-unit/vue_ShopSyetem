@@ -48,12 +48,12 @@ methods: {
     async getRightsList() {
       const { data: res } = await this.$http.get('rights/list')
       if (res.meta.status !== 200) {
-        console.log(res)
+        // console.log(res)
         return this.$message.error('获取权限列表失败！')
       }
 
       this.rightsList = res.data
-      console.log(this.rightsList)
+      // console.log(this.rightsList)
     }
 },
 //生命周期 - 创建完成（可以访问当前this实例）
@@ -65,9 +65,7 @@ created() {
 mounted() {
   
   },
-beforeCreate() {
-  sessionStorage.token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjUwMCwicmlkIjowLCJpYXQiOjE1OTY0NDgxMjAsImV4cCI6MTU5NjUzNDUyMH0.XOmxmXJbOozOqZL5MUoBrqgsDheej4M8PBkIHoQ2heM";
-  }, //生命周期 - 创建之前
+beforeCreate() {}, //生命周期 - 创建之前
 beforeMount() {}, //生命周期 - 挂载之前
 beforeUpdate() {}, //生命周期 - 更新之前
 updated() {}, //生命周期 - 更新之后
