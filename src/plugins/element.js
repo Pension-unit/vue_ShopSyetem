@@ -6,6 +6,9 @@ import {
   Form,
   FormItem,
   Input,
+  Checkbox,
+  CheckboxGroup,
+  Upload,
   Message,
   Container,
   Header,
@@ -34,13 +37,14 @@ import {
   Steps,
   Step,
   Tag,
-  Checkbox,
-  CheckboxGroup,
-  Upload
 } from 'element-ui'
 
-
-
+// 导入组件
+import Timeline from './timeline/index.js'
+import TimelineItem from './timeline-item/index.js'
+// 注册全局可用
+Vue.use(Timeline);
+Vue.use(TimelineItem);
 Vue.use(Button)
 Vue.use(Form)
 Vue.use(FormItem)
