@@ -1,22 +1,16 @@
-<!--  -->
 <template>
   <div>
-    <!-- 面包屑 -->
+    <!-- 面包屑导航 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>首页</el-breadcrumb-item>
+      <el-breadcrumb-item  :to="{ path: '/home' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>权限管理</el-breadcrumb-item>
       <el-breadcrumb-item>角色列表</el-breadcrumb-item>
     </el-breadcrumb>
 
     <!-- 卡片 -->
     <el-card>
-      <!-- 搜索栏以及添加角色按钮区域 -->
+      <!-- 角色添加按钮 -->
       <el-row :gutter="20">
-        <!-- <el-col :span="8">
-          <el-input placeholder="请输入查询角色名称" clearable>
-            <el-button slot="append" icon="el-icon-search"></el-button>
-          </el-input>
-        </el-col> -->
         <el-col :span="4">
           <el-button type="primary" @click="addDialogVisible = true">添加角色</el-button>
         </el-col>
@@ -50,7 +44,9 @@
                       type="success"
                       closable
                       @close="removeRightById(scope.row, item2.id)"
-                    >{{item2.authName}}</el-tag>
+                    >
+                    {{item2.authName}}
+                    </el-tag>
                     <i class="el-icon-caret-right"></i>
                   </el-col>
                   <el-col :span="18">
@@ -60,7 +56,9 @@
                       :key="item3.id"
                       closable
                       @close="removeRightById(scope.row, item3.id)"
-                    >{{item3.authName}}</el-tag>
+                    >
+                    {{item3.authName}}
+                    </el-tag>
                   </el-col>
                 </el-row>
               </el-col>
@@ -153,7 +151,6 @@
       </span>
     </el-dialog>
   </div>
-
 </template>
 
 
@@ -233,6 +230,7 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    // 获取角色列表
     async getRolesList() {
       const { data: res } = await this.$http.get('roles')
 

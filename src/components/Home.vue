@@ -144,7 +144,6 @@ export default {
         color: white;
         letter-spacing: 0.2em;
         cursor: pointer;
-
       }
     }
 
