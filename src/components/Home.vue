@@ -77,13 +77,26 @@ export default {
       // 头像路径
       headersrc: window.sessionStorage.getItem('headerSrc'),
       menulist: [],
+      // 一级菜单图标
       iconObj: {
-        '125': 'iconfont icon-users',
-        '103': 'iconfont icon-tijikongjian',
-        '101': 'iconfont icon-shangpin',
-        '102': 'iconfont icon-danju',
+        '125': 'iconfont icon-yonghuguanli',
+        '103': 'iconfont icon-quanxianguanli',
+        '101': 'iconfont icon-shangpinguanli',
+        '102': 'iconfont icon-dingdanliebiao',
         '145': 'iconfont icon-baobiao',
       },
+      twoIconObj:
+        {
+          "用户列表": 'iconfont',
+          '角色列表': 'iconfont',
+          '权限列表': 'iconfont',
+          '商品列表': 'iconfont',
+          '分类参数': 'iconfont',
+          '商品分类': 'iconfont',
+          '订单列表': 'iconfont',
+          '数据报表': 'iconfont',
+
+        },
       isCollapse: false,
       // 被激活的连接地址
       activePath: '',
