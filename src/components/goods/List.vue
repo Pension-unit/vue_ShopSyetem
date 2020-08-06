@@ -217,6 +217,7 @@ export default {
   },
   computed: {},
   watch: {},
+  // 在创建之前获取列表, 创建好之后直接渲染到页面上
   created() {
     this.getProductsList()
   },
@@ -361,7 +362,7 @@ export default {
       }
 
       const { data: res } = await this.$http.delete('goods/' + id)
-      console.log('goods/' + id)
+      // console.log('goods/' + id)
       if (res.meta.status !== 200) {
         return this.$message.error('删除失败!')
       }
