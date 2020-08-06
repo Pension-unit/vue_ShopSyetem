@@ -8,14 +8,22 @@ import './assets/fonts/iconfont.css'
 import './assets/css/global.css'
 import TreeTable from 'vue-table-with-tree-grid'
 
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
 import axios from 'axios'
 // 配置请求的跟路径
 axios.defaults.baseURL = "http://193.112.208.128:8888/api/private/v1/"
 axios.interceptors.request.use(config => {
+  NProgress.start();
   // console.log(config)
   config.headers.Authorization = window.sessionStorage.getItem('token')
   // 在最后必须 return config
   return config
+})
+axios.interceptors.response.use( res => {
+  NProgress.done();
+  return res
 })
 Vue.prototype.$http = axios
 
