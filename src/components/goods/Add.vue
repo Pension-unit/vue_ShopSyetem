@@ -165,7 +165,7 @@ export default {
       // 静态属性列表数据
       onlyTableData: [],
       // 上传图片的URL地址
-      uploadURL: 'http://193.112.208.128:8888/api/private/v1/upload',
+      uploadURL: 'http://127.0.0.1:8888/api/private/v1/upload',
       // 图片上传组件的headers请求头对象
       headerObj: {
         Authorization: window.sessionStorage.getItem('token'),
@@ -236,9 +236,13 @@ export default {
           item.attr_vals =
             item.attr_vals.length === 0 ? [] : item.attr_vals.split(' ')
         })
+        
         this.manyTableData = res.data
-        // console.log(res.data[0])
-        this.checkedAttributes = res.data[0].attr_vals
+        console.log(res.data)
+        // 如果有值, 将其赋予 checkedAttributes( checked 动态绑定值)
+        if(res.data[0]){
+          this.checkedAttributes = res.data[0].attr_vals
+        }
       } else if (this.activeIndex === '2') {
         const { data: res } = await this.$http.get(
           `categories/${this.cateId}/attributes`,
@@ -283,7 +287,7 @@ export default {
     add(){
       this.$refs.addFormRef.validate(async valid => {
         if(!valid){
-          return this.$message.error("请填写必要的表单项! ")
+          return this.$message.error("请填写必要的选项! ")
         }
         // 执行添加的业务逻辑
         // 深克隆
@@ -340,4 +344,15 @@ export default {
 }
 </script>
 <style lang='less' scoped>
+.el-checkbox {
+  margin: 0 10px 0 0 !important;
+}
+
+.previewImg {
+  width: 100%;
+}
+
+.btnAdd {
+  margin-top: 15px;
+}
 </style>
