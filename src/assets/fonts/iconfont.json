@@ -1,0 +1,100 @@
+{
+  "id": "1991055",
+  "name": "vue后台管理系统",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "176401",
+      "name": "订单管理",
+      "font_class": "dingdanguanli",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "882913",
+      "name": "用户管理",
+      "font_class": "yonghuguanli",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "1759054",
+      "name": "权限管理",
+      "font_class": "quanxianguanli",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "2512428",
+      "name": "商品分类",
+      "font_class": "select-goods",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "4234477",
+      "name": "角色列表",
+      "font_class": "jiaoseliebiao",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "5061207",
+      "name": "数据报表",
+      "font_class": "baobiao",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "6115878",
+      "name": "权限列表",
+      "font_class": "quanxianliebiao",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "7644049",
+      "name": "订单列表",
+      "font_class": "dingdanliebiao",
+      "unicode": "e642",
+      "unicode_decimal": 58946
+    },
+    {
+      "icon_id": "8779236",
+      "name": "商品管理",
+      "font_class": "shangpinguanli",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    },
+    {
+      "icon_id": "10446853",
+      "name": "用户列表",
+      "font_class": "yonghuliebiao",
+      "unicode": "e7f8",
+      "unicode_decimal": 59384
+    },
+    {
+      "icon_id": "12624599",
+      "name": "商品列表",
+      "font_class": "shangpinliebiao",
+      "unicode": "e6f8",
+      "unicode_decimal": 59128
+    },
+    {
+      "icon_id": "13479014",
+      "name": "考察分类参数配置",
+      "font_class": "kaochafenleicanshupeizhi",
+      "unicode": "e69a",
+      "unicode_decimal": 59034
+    },
+    {
+      "icon_id": "13952162",
+      "name": "数据统计",
+      "font_class": "tongji",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    }
+  ]
+}

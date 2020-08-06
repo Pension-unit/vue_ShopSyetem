@@ -53,7 +53,7 @@
 
                     <el-table-column label="下单时间" prop='create_time'>
                         <template slot-scope="scope">
-                          <span style="margin-left: 10px">{{ scope.row.create_time}}</span>
+                          <span style="margin-left: 10px">{{ scope.row.create_time | dateFormat}}</span>
                         </template>
                     </el-table-column>
 
@@ -82,16 +82,15 @@
                 </div>
 
                 <!-- 修改地址对话框 -->
-                <el-dialog title="修改地址" :visible.sync="dialogFormVisible">
-                  <el-form label-width="100px" >
-                    <el-form-item label="省市区/县" required>
-                      <el-cascader v-model="value" :options="citydatas"></el-cascader>
+                <el-dialog title="修改地址" :visible.sync="dialogFormVisible" @close="addressDialogClosed">
+                  <el-form label-width="100px" :model='addressForm' ref="addressFormRef">
+                    <el-form-item label="省市区/县" required prop="address1">
+                      <el-cascader :options="citydatas" v-model='addressForm.address1'></el-cascader>
                     </el-form-item>
                     <el-form-item label="详细地址" 
-                    v-model='addressForm'
-                    prop="address"
+                    prop="address2"
                     :rules="{required: true, message: '请填写详细地址', trigger: 'blur'}">
-                      <el-input v-model='addressForm.address'></el-input>
+                      <el-input v-model='addressForm.address2'></el-input>
                     </el-form-item>
                   </el-form>
                   <div slot="footer" class="dialog-footer">
@@ -106,7 +105,7 @@
                     <el-timeline-item
                       v-for="(item, index) in orderstatusinfo"
                       :key="index"
-                      :timestamp="item.timestamp">
+                      :timestamp="item.time">
                       {{item.context}}
                     </el-timeline-item>
                   </el-timeline>
@@ -140,10 +139,10 @@ return {
     value: [],
     citydatas,
     addressForm:{
-      address:'',
+      address1:[],
+      address2:'',
     },
     progressVisible: false,
-    // reverse: true,
     orderstatusinfo:[],
   };
 },
@@ -153,21 +152,12 @@ computed: {},
 watch: {},
 //方法集合
 methods: {
-    //显示修改地址弹出框
-    changeAddress:function(){
-      this.dialogFormVisible = true;
-    },
-    
-    //显示物流状态框
-    checkOrderStatus: function(){
-      this.progressVisible = true;
-    },
 
     indexMethod(index) {
         return index * 1 + 1;
       },
 
-    //获取所有订单列表
+    //获取所有订单信息
     async getOrderList(){
       let res = await this.$http.get('orders',{
         params: this.queryInfo
@@ -189,19 +179,30 @@ methods: {
       this.getOrderList();
     },
 
-    //获取物流状态
-    async getOrderStatus(){
+    //显示修改地址弹出框
+    changeAddress:function(){
+      this.dialogFormVisible = true;
+    },
+    
+    //修改地址框关闭后数据清除
+    addressDialogClosed:function(){
+      this.$refs.addressFormRef.resetFields()
+    },
+
+    //订单物流状态框
+    async checkOrderStatus(){
       let res = await this.$http.get('/kuaidi/804909574412544580');
       // console.log(res.data);
       this.orderstatusinfo = res.data.data;
       console.log(this.orderstatusinfo);
 
-    }
+      this.progressVisible = true; //显示物流状态框
+    },
 },
+
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {
   this.getOrderList();
-  this.getOrderStatus();
 },
 //生命周期 - 挂载完成（可以访问DOM元素）
  mounted() {

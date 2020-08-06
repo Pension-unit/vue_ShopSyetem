@@ -204,7 +204,7 @@ export default {
       // 已选中参数
       checkedAttributes: [],
       // 上传图片的URL地址
-      uploadURL: 'http://127.0.0.1:8888/api/private/v1/upload',
+      uploadURL: 'http://193.112.208.128:8888/api/private/v1/upload',
       // 图片上传的请求头
       headerObj: {
         Authorization: window.sessionStorage.getItem('token'),
@@ -217,6 +217,7 @@ export default {
   },
   computed: {},
   watch: {},
+  // 在创建之前获取列表, 创建好之后直接渲染到页面上
   created() {
     this.getProductsList()
   },
@@ -361,7 +362,7 @@ export default {
       }
 
       const { data: res } = await this.$http.delete('goods/' + id)
-      console.log('goods/' + id)
+      // console.log('goods/' + id)
       if (res.meta.status !== 200) {
         return this.$message.error('删除失败!')
       }
