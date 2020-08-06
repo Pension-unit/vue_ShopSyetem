@@ -39,7 +39,12 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-// import Img from "../assets/hero.png"
+import Img from "../static/logo.png"
+import pyqImg from "../static/pyq.png"
+import yfmImg from "../static/yfm.png"
+import dzhImg from "../static/dzh.png"
+import zyImg from "../static/zhangyan.png"
+import jwImg from "../static/jiangwei.png"
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
@@ -47,7 +52,7 @@ export default {
     //这里存放数据
     return {
       // 头像路径
-     headersrc:"../assets/logo.png",
+     headersrc:Img,
       loginForm: {
         username: "",
         password: "",
@@ -109,15 +114,15 @@ export default {
     },
   changeProfile(){
        if(this.loginForm.username == "pyq"){
-         this.headersrc = "../assets/pyq.png"
+         this.headersrc = pyqImg
        }else if(this.loginForm.username == "yfm") {
-         this.headersrc = "../assets/yfm.png"
+         this.headersrc = yfmImg
        }else if(this.loginForm.username == "dzh") {
-         this.headersrc = "../assets/dzh.png"
+         this.headersrc = dzhImg
        }else if(this.loginForm.username == "zhangyan") {
-         this.headersrc = "../assets/zhangyan.png"
+         this.headersrc = zyImg
        }else if(this.loginForm.username == "jiangwei") {
-         this.headersrc = "../assets/jiangwei.png"
+         this.headersrc = jwImg
        }
        window.sessionStorage.setItem('headerSrc',this.headersrc)
     }
