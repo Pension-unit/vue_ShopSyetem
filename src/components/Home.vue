@@ -5,18 +5,30 @@
       <!-- 头部 -->
       <el-header>
         <div>
-          <img src="../assets/hero.png" alt width="50" />
           <span>电商后台管理系统</span>
         </div>
+        <div class="header_img">
+          <img :src="headersrc" alt width="50" />
+        </div>
+        <span class="headUername">您好, {{headUsername}}</span>
         <el-button type="info" @click="logout">退出</el-button>
       </el-header>
       <!-- 主题 -->
       <el-container>
         <!-- 侧边栏 -->
         <el-aside :width="isCollapse?'64px':'200px'">
-          <div class="toggle-button" @click="toggleCollapse">|||</div>
+          <!-- <div class="toggle-button" @click="toggleCollapse">|||</div> -->
           <!-- 侧边栏菜单区 -->
-          <el-menu background-color="#313743" text-color="#fff" active-text-color="#0d87ea" unique-opened :collapse="isCollapse" :collapse-transition="false" router :default-active="activePath">
+          <el-menu
+            background-color="#4a5259"
+            text-color="#fff"
+            active-text-color="#38a28a"
+            unique-opened
+            :collapse="isCollapse"
+            :collapse-transition="false"
+            router
+            :default-active="activePath"
+          >
             <!-- 一级菜单 -->
             <el-submenu :index="item.id + ''" v-for="item in menulist" :key="item.id">
               <!-- 一级菜单模板 -->
@@ -27,20 +39,25 @@
                 <span>{{item.authName}}</span>
               </template>
               <!-- 二级菜单 -->
-                <el-menu-item :index="'/'+sbuItem.path + ''" v-for="sbuItem in item.children" :key="sbuItem.id" @click="saveNavState('/'+sbuItem.path)">
-                  <!-- 二级菜单模板 -->
-                  <template slot="title">
-                    <!-- 图标 -->
-                    <i class="el-icon-menu"></i>
-                    <!-- 文本 -->
-                    <span>{{sbuItem.authName}}</span>
-                  </template>
-                </el-menu-item>
+              <el-menu-item
+                :index="'/'+sbuItem.path + ''"
+                v-for="sbuItem in item.children"
+                :key="sbuItem.id"
+                @click="saveNavState('/'+sbuItem.path)"
+              >
+                <!-- 二级菜单模板 -->
+                <template slot="title">
+                  <!-- 图标 -->
+                  <i class="el-icon-menu"></i>
+                  <!-- 文本 -->
+                  <span>{{sbuItem.authName}}</span>
+                </template>
+              </el-menu-item>
             </el-submenu>
           </el-menu>
         </el-aside>
         <el-main>
-            <router-view></router-view>
+          <router-view></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -57,18 +74,22 @@ export default {
   data() {
     //这里存放数据
     return {
-      menulist:[],
-      iconObj:{
-        '125':'iconfont icon-users',
-        '103':'iconfont icon-tijikongjian',
-        '101':'iconfont icon-shangpin',
-        '102':'iconfont icon-danju',
-        '145':'iconfont icon-baobiao'
+      // 头像路径
+      headersrc: window.sessionStorage.getItem('headerSrc'),
+      menulist: [],
+      iconObj: {
+        '125': 'iconfont icon-users',
+        '103': 'iconfont icon-tijikongjian',
+        '101': 'iconfont icon-shangpin',
+        '102': 'iconfont icon-danju',
+        '145': 'iconfont icon-baobiao',
       },
-      isCollapse:false,
+      isCollapse: false,
       // 被激活的连接地址
-      activePath:''
-    };
+      activePath: '',
+      // sessionStorage里的用户名
+      headUsername: window.sessionStorage.getItem('username'),
+    }
   },
   //监听属性 类似于data概念
   computed: {},
@@ -77,29 +98,28 @@ export default {
   //方法集合
   methods: {
     logout: function () {
-      window.sessionStorage.clear();
-      this.$router.push("/login");
+      window.sessionStorage.clear()
+      this.$router.push('/login')
     },
-    toggleCollapse:function(){
+    toggleCollapse: function () {
       this.isCollapse = !this.isCollapse
     },
-     // 获取所有的菜单
+    // 获取所有的菜单
     async getMenuList() {
       const { data: res } = await this.$http.get('menus')
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
       this.menulist = res.data
       console.log(res)
     },
-    saveNavState:function(activePath){
-      window.sessionStorage.setItem('activePath',activePath)
+    saveNavState: function (activePath) {
+      window.sessionStorage.setItem('activePath', activePath)
       this.activePath = activePath
-    }
+    },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
     this.getMenuList()
     this.activePath = window.sessionStorage.getItem('activePath')
-    
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
@@ -110,7 +130,7 @@ export default {
   beforeDestroy() {}, //生命周期 - 销毁之前
   destroyed() {}, //生命周期 - 销毁完成
   activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
-};
+}
 </script>
 <style lang='less' scoped>
 .home_contian {
@@ -122,29 +142,45 @@ export default {
     font-size: 15px;
     padding-left: 0;
     display: flex;
-    justify-content: space-between;
-    background-color: #363d40;
+    // justify-content: space-between;
+    background-color: #38a28a;
     align-items: center;
     > div {
+      // background-color: salmon;
+      // align-items: center;
       display: flex;
+      flex: 9;
+      // background-color: red;
       align-items: center;
       span {
         margin-left: 15px;
+      }
+    }
+    .headUername {
+      // background-color: royalblue;
+      // background-color: rosybrown;
+      flex: 1;
+    }
+    .header_img {
+      flex: 0;
+      padding-right: 15px;
+      // background-color: red;
+      img {
+        border-radius: 50%;
       }
     }
   }
 
   .el-container {
     .el-aside {
-      background-color: #313743;
-      .toggle-button{
-        background-color: #4d5264;
+      background-color: #4a5259;
+      .toggle-button {
+        background-color: #506464;
         font-size: 10px;
         text-align: center;
         color: white;
         letter-spacing: 0.2em;
         cursor: pointer;
-
       }
     }
 
@@ -156,7 +192,7 @@ export default {
     margin-right: 10px;
   }
   .el-menu {
-    border:none
+    border: none;
   }
 }
 </style>

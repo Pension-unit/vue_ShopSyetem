@@ -4,7 +4,7 @@
     <div class="login_box">
       <!-- 头像区域 -->
       <div class="avatar_box">
-        <img src="../assets/logo.png" alt />
+        <img :src="headersrc" alt />
       </div>
       <!-- 登录表单区域 -->
       <el-form
@@ -16,7 +16,7 @@
       >
         <!-- 用户名 -->
         <el-form-item prop="username">
-          <el-input v-model="loginForm.username" prefix-icon="iconfont icon-user"></el-input>
+          <el-input v-model="loginForm.username" prefix-icon="iconfont icon-user" @blur="changeProfile"></el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item prop="password">
@@ -39,16 +39,18 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-
+// import Img from "../assets/hero.png"
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
   data() {
     //这里存放数据
     return {
+      // 头像路径
+     headersrc:"../assets/logo.png",
       loginForm: {
-        username: "admin",
-        password: "123456",
+        username: "",
+        password: "",
       },
       //   表单的验证规则对象
       loginFormRules: {
@@ -101,12 +103,29 @@ export default {
            }
        )
        window.sessionStorage.setItem('token',res.data.token)
+       window.sessionStorage.setItem('username',res.data.username)
        this.$router.push('/home')
       });
     },
+  changeProfile(){
+       if(this.loginForm.username == "pyq"){
+         this.headersrc = "../assets/pyq.png"
+       }else if(this.loginForm.username == "yfm") {
+         this.headersrc = "../assets/yfm.png"
+       }else if(this.loginForm.username == "dzh") {
+         this.headersrc = "../assets/dzh.png"
+       }else if(this.loginForm.username == "zhangyan") {
+         this.headersrc = "../assets/zhangyan.png"
+       }else if(this.loginForm.username == "jiangwei") {
+         this.headersrc = "../assets/jiangwei.png"
+       }
+       window.sessionStorage.setItem('headerSrc',this.headersrc)
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+   
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前
@@ -120,7 +139,9 @@ export default {
 </script>
 <style lang="less" scoped>
 .login_container {
-  background-color: #2b4b6b;
+  // background-color: #2b4b6b;
+  // background-image: linear-gradient(#e66465, #9198e5);
+  background-image: linear-gradient(-90deg, #e66465, #9198e5);
   height: 100%;
 }
 
