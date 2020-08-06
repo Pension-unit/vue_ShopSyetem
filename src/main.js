@@ -17,8 +17,9 @@ axios.interceptors.request.use(config => {
   // 在最后必须 return config
   return config
 })
+// 挂载axios到vue原型上
 Vue.prototype.$http = axios
-
+// 阻止启动生产消息
 Vue.config.productionTip = false
 
 Vue.component('tree-table', TreeTable)
