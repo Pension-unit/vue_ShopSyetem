@@ -166,7 +166,7 @@ export default {
       // background-color: red;
       align-items: center;
       span {
-        margin-left: 15px;
+        margin-left: 20px;
       }
     }
     .headUername {
