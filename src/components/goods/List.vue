@@ -204,7 +204,7 @@ export default {
       // 已选中参数
       checkedAttributes: [],
       // 上传图片的URL地址
-      uploadURL: 'http://127.0.0.1:8888/api/private/v1/upload',
+      uploadURL: 'http://193.112.208.128:8888/api/private/v1/upload',
       // 图片上传的请求头
       headerObj: {
         Authorization: window.sessionStorage.getItem('token'),
